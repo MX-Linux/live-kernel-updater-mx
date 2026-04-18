@@ -1,3 +1,9 @@
+live-kernel-updater (0.2.30+9) mx; urgency=medium
+
+  * always copy programs when rebuilding initrd
+
+ -- Dolphin Oracle <dolphinoracle@gmail.com>  Sat, 18 Apr 2026 14:17:07 -0400
+
 live-kernel-updater (0.2.30+8) mx; urgency=medium
 
   * fix kernel count function by filtering memtest entries
