@@ -892,6 +892,8 @@ copy_modules() {
     local from=$1  to=$2  versions=$3  mod_file=$4
 
     local options="--count --quiet --from=$from --to=$to"
+
+
     [ ${#mod_file} -gt 0 ] && options="$options --verbose"
 
     local version success
@@ -914,9 +916,13 @@ copy_modules() {
 #------------------------------------------------------------------------------
 copy_programs() {
     local from=$1  to=$2  prog=${3:-copy-initrd-programs}
+    local encrypt_option=""
+    if [[ "$IS_ENCRYPTED" = true ]]; then
+        encrypt_option="--encrypt"
+    fi
     need_prog $prog
-    cmd $prog --from="$from" --to="$to" --encrypt --clean
-    cmd $prog --from="$from" --to="$to"
+    cmd $prog --from="$from" --to="$to" $encrypt_option --clean
+    cmd $prog --from="$from" --to="$to" $encrypt_option
 }
 
 #------------------------------------------------------------------------------
