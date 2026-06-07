@@ -1,3 +1,27 @@
+live-kernel-updater (26.06.1) mx; urgency=medium
+
+  * Fix copy_programs() writing etc/encrypt into the initrd when only
+    --encrypt was given but the system is not actually encrypted: etc/encrypt
+    is now written only when encrypted() is true (IS_ENCRYPTED non-empty),
+    not when CMD_ENCRYPT alone is set
+  * Fix copy_programs() leaving a stray etc/encrypt in the initrd when the
+    system is not encrypted: if copy-initrd-programs copies a wrongly-present
+    etc/encrypt from the initrd source (e.g. leftover from a previous
+    misconfiguration), the rebuilt initrd would trigger LUKS unlock at boot on
+    a non-LUKS system; add an elif branch to explicitly remove etc/encrypt from
+    the initrd work directory whenever encrypted() is false
+  * Man page: add note to -d/--device that the directory form cannot be used
+    with LUKS-encrypted live-USBs because a LUKS device requires two separate
+    mount points (unencrypted boot partition and LUKS container); use the
+    block device path instead
+  * Add TryExec= to desktop file
+  * Remove sudo from desktop file
+  * Bump standards version to 4.6.2 and debhelper-compat to 13
+  * Add uc-tool-mx to Depends in debian/control
+  * Set version string to 26.06.1
+
+ -- fehlix <fehlix@mxlinux.org>  Sun, 07 Jun 2026 11:11:12 -0400
+
 live-kernel-updater (0.2.30+16) mx; urgency=medium
 
   * Fix stale-slot false positive when a kernel was purged in the current
