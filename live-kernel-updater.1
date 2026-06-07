@@ -1,4 +1,4 @@
-.TH LIVE-KERNEL-UPDATER 1 "2026-05-26" "Version 26.05.4" "antiX/MX Documentation"
+.TH LIVE-KERNEL-UPDATER 1 "2026-06-07" "Version 26.06.1" "antiX/MX Documentation"
 .nh
 .ad l
 .SH NAME
@@ -90,6 +90,10 @@ The live\-usb device to update.  Use \fBlive\fR to explicitly target the running
 live system.  A block device path (e.g. \fI/dev/sdb1\fR) causes the tool to
 mount and update that device.  A directory path (e.g. \fI/mnt/usb\fR) is used
 directly as the live mount point without mounting.
+Do not use the directory form with LUKS\-encrypted live\-USBs: a LUKS device
+requires two separate mount points (unencrypted boot partition and LUKS
+container) which cannot be expressed as a single directory path.  Use the
+block device path instead and let the tool handle the LUKS setup.
 .TP
 \fB\-e\fR, \fB\-\-encrypt\fR
 Force \fBcryptsetup\fR to be copied into the initrd regardless of whether
