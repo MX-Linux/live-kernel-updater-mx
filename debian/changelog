@@ -1,3 +1,26 @@
+live-kernel-updater (26.06.2) mx; urgency=medium
+
+  * Add per-vendor microcode injection toggle to TUI action menu: two entries
+    "Disable/Enable AMD microcode" and "Disable/Enable Intel microcode" appear
+    when uc-tool is installed; state is stored in persistent flag files
+    /etc/live-kernel-updater/no-ucode-amd and no-ucode-intel; selecting a
+    toggle flips the flag file and restarts
+  * Extend --no-ucode to accept an optional vendor list: --no-ucode=amd,
+    --no-ucode=intel, or --no-ucode=amd,intel (bare --no-ucode disables both,
+    preserving backward compatibility); CLI uses union semantics -- it adds to
+    whatever the flag files already disable rather than replacing them, so
+    --no-ucode=intel on a system with no-ucode-amd set disables both vendors
+    as expected
+  * Show effective vendor list in "Adding %s microcode to initrd" message so
+    the user sees which microcode is actually being injected
+  * When a vendor is disabled by --no-ucode for the current session but not by
+    its flag file, the TUI menu entry shows "(disabled by --no-ucode)" in the
+    label so the user can distinguish the persistent setting from the CLI
+    override
+  * Set version string to 26.06.2
+
+ -- fehlix <fehlix@mxlinux.org>  Mon, 08 Jun 2026 06:01:32 -0400
+
 live-kernel-updater (26.06.1) mx; urgency=medium
 
   * Fix copy_programs() writing etc/encrypt into the initrd when only

@@ -1,4 +1,4 @@
-.TH LIVE-KERNEL-UPDATER 1 "2026-06-07" "Version 26.06.1" "antiX/MX Documentation"
+.TH LIVE-KERNEL-UPDATER 1 "2026-06-08" "Version 26.06.2" "antiX/MX Documentation"
 .nh
 .ad l
 .SH NAME
@@ -179,8 +179,11 @@ Useful as a starting point for customisation.
 Force shared\-initrd mode.  Used as the default when multi\-kernel mode
 is not auto\-detected.
 .TP
-\fB\-U\fR, \fB\-\-no\-ucode\fR
-Skip microcode injection when repacking the initrd.
+\fB\-U\fR, \fB\-\-no\-ucode\fR[\fB=\fIlist\fR]
+Skip microcode refresh when repacking the initrd.
+\fIlist\fR is \fBamd\fR, \fBintel\fR, or \fBamd,intel\fR (default: both).
+CLI uses union semantics: it adds to whatever the flag files already disable
+rather than replacing them.
 .TP
 \fB\-v\fR, \fB\-\-version\fR
 Show version information and exit.
