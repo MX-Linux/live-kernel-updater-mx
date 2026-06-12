@@ -1490,7 +1490,7 @@ $(printf "${m_co}%s: %s${nc_co}" "$_lbl_mods" "$(pq "$MODS")")"
         blurb=$(printf "${m_co}%s: %s" $"Remove kernel" "$(pq "$target_fname")")
 
     elif [ "$action" = 'quit' ]; then
-        offer_restart
+        my_exit 0
 
     elif [ "$action" = 'ucode-amd-toggle' ] || [ "$action" = 'ucode-intel-toggle' ]; then
         local _flag _vendor_name
@@ -2390,8 +2390,8 @@ do_defrag() {
     fi
     local files
     files=$(find "${iso_dir%/}" -maxdepth 1 \
-        \( -name "vmlinuz" -o -name "vmlinuz[0-9]" \
-        -o -name "initrd.gz" -o -name "initrd[0-9].gz" \) 2>/dev/null)
+        \( -name "vmlinuz" -o -name "vmlinuz[1-9]" \
+        -o -name "initrd.gz" -o -name "initrd[1-9].gz" \) 2>/dev/null)
     [ -n "$files" ] && cmd $prog $opts $files
 }
 

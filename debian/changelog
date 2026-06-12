@@ -17,6 +17,12 @@ live-kernel-updater (26.06.2) mx; urgency=medium
     its flag file, the TUI menu entry shows "(disabled by --no-ucode)" in the
     label so the user can distinguish the persistent setting from the CLI
     override
+  * Fix Quit in TUI action menu prompting "Perform another operation?": Quit
+    now exits immediately via my_exit; the offer_restart prompt is kept only
+    when the user cancels out of a sub-menu (kernel selection)
+  * Fix do_defrag() file patterns: use vmlinuz[1-9] and initrd[1-9].gz instead
+    of vmlinuz[0-9] and initrd[0-9].gz; slot 0 variants are never used
+    (numbered slots start at vmlinuz1/initrd1.gz)
   * Set version string to 26.06.2
 
  -- fehlix <fehlix@mxlinux.org>  Mon, 08 Jun 2026 06:01:32 -0400
